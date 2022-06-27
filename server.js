@@ -17,6 +17,17 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 //define sess (session) as an object with secret:, cookie:, store: etc
+const sess = {
+    secret: "secret"
+};
 
 //app.use(session(sess));
+app.use(session(sess));
 
+const hbs = exphbs.create({ helpers });
+
+
+//sequelize sync and app.listen
+sequelize.sync({ force: false }).then(() => {
+    app.listen(PORT, () => console.log(`App now listening on ${PORT}!`));
+  });
