@@ -16,9 +16,15 @@ const app = express();
 //define PORT as process.envPORT || 3001
 const PORT = process.env.PORT || 3001;
 
-//define sess (session) as an object with secret:, cookie:, store: etc
+//define sess (session) as an object with secret:, cookie:, store: etc - dont have to use cookies for this case
 const sess = {
-    secret: "secret"
+    secret: "secret",
+    cookie: {},
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize
+  })
 };
 
 //app.use(session(sess));
@@ -26,7 +32,7 @@ app.use(session(sess));
 
 const hbs = exphbs.create({ helpers });
 
-//below copied form class exmaple
+//below copied from class exmaple
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
