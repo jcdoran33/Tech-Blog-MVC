@@ -18,10 +18,10 @@ User.hasMany(Comment, {
 Post.hasMany(Comment, {
     foreignKey: "post_id",
     onDelete: "CASCADE"
-})
+});
 
 
-//A comment belongs to s ainsgle post only
+//A comment belongs to a single post only
 Comment.belongsTo(Post, {
     foreignKey: "post_id",
 });
