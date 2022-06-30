@@ -12,10 +12,21 @@ Post.init(
             primaryKey: true,
             autoIncrement: true
         },
+        message: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        user_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: "user",
+                key: "id"
+            }
+        }
     },
     {
         sequelize,
-        timestamps: false,
+        timestamps: true, //set to true to log timestamp of post creation
         freezeTableName: true,
         underscored: true,
         modelName: 'post',
