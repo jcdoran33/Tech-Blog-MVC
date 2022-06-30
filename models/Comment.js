@@ -12,11 +12,29 @@ Comment.init(
             primaryKey: true,
             autoIncrement: true
         },
+        message: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        post_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: "post",
+                key: "id"
+            }
+        },
+        user_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: "user",
+                key: "id"
+            }
+        }
 
     },
     {
         sequelize,
-        timestamps: false,
+        timestamps: true, // set to true to capture the time stamp of comment creation
         freezeTableName: true,
         underscored: true,
         modelName: 'comment',

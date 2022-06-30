@@ -31,6 +31,11 @@ Post.belongsTo(User, {
     foreignKey: "user_id"
 });
 
+//comment also belongs to User (much like Post belongsTo user).. need to add that below
+//A comment belongs to a single user only
+Comment.belongsTo(User, {
+    foreignKey: "user_id"
+});
 
 //export the models
 module.exports = { Comment, Post, User };
